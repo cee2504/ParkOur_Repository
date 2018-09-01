@@ -15,13 +15,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Login extends AppCompatActivity {
+public class LoginPage extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private EditText emailAddress;
     private EditText password;
     private Button loginButton;
     private Button registerButton;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,26 +34,26 @@ public class Login extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         registerButton = findViewById(R.id.registerButton);
 
-        mAuth FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
-        mAuthListener = new FirebaseAuth.AuthStateListener(){
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth){
-                if(firebaseAuth.getCurrentUser() != null){
-                    startActivity(new Intent(Login.this, NEW PAGE CHANGE THIS VALUE));
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (firebaseAuth.getCurrentUser() != null) {
+                    startActivity(new Intent(LoginPage.this, CarParkSelection.class));
                 }
             }
         };
 
-        loginButton.setOnClickListener(new View.OnClickListener(){
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 startLogin();
             }
         });
 
-        registerButton.setOnClickListener(new View.OnClickListener(){
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 createAccount();
             }
         });
@@ -60,43 +61,42 @@ public class Login extends AppCompatActivity {
     //end onCreate method
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
 
         mAuth.addAuthStateListener(mAuthListener);
     }
 
 
-    private void startLogin(){
+    private void startLogin() {
         String email = emailAddress.getText().toString();
         String pass = password.getText().toString();
 
-        if(TextUtils.isEmpty(email) || (TextUtils.isEmpty(pass))){
-            Toast.makeText(Login.this, "Fields cannot be empty", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(email) || (TextUtils.isEmpty(pass))) {
+            Toast.makeText(LoginPage.this, "Fields cannot be empty", Toast.LENGTH_SHORT).show();
 
-        }
-        else{
+        } else {
             mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(!task.isSuccessful()){
-                        Toast.makeText(Login.this, "Invalid Username or Password", Toast.LENGTH_SHORT).show();
+                    if (!task.isSuccessful()) {
+                        Toast.makeText(LoginPage.this, "Invalid Username or Password", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
     }
 
-    private void CreateAccount(){
+    private void createAccount() {
         (mAuth.createUserWithEmailAndPassword(emailAddress.getText().toString(), password.getText().toString())).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    Toast.makeText(Login.this, "Registration Complete!", Toast.LENGTH_LONG).show();
-                }
-                else{
-                    Toast.makeText(Login.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                if (task.isSuccessful()) {
+                    Toast.makeText(LoginPage.this, "Registration Complete!", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(LoginPage.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
+}
