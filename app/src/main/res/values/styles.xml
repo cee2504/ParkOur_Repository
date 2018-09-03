@@ -8,4 +8,19 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="ToolbarIconStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="color">@color/purpp</item>
+    </style>
+
+    <style name="ToolBarStyle.Event" parent="ToolbarIconStyle">
+        <item name="titleTextAppearance">@style/TextAppearance.Widget.Event.Toolbar.Title</item>
+    </style>
+
+    <style name="TextAppearance.Widget.Event.Toolbar.Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <!--Any text styling can be done here-->
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
 </resources>

@@ -49,6 +49,7 @@ public class TimePicker extends AppCompatActivity {
                 final Dialog d = new Dialog(TimePicker.this);
                 d.setTitle("NumberPicker");
                 d.setContentView(R.layout.dialog);
+                d.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
                 Button b1 = (Button) d.findViewById(R.id.button1);
 
