@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TimePicker">
+    tools:context=".TimePicker"
+    android:background="@drawable/gradient_bg_1">
 
     <include
         android:id="@+id/toolbar"
@@ -73,21 +74,21 @@
 
     <Button
         android:id="@+id/btnTime"
-        android:textColor="@color/white"
-        android:layout_width="106dp"
+        android:layout_width="134dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/textView2"
         android:layout_alignTop="@+id/viewTime"
-        android:text="Pick your time" />
+        android:background="@drawable/big_button_bg"
+        android:text="Pick your time"
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/viewTime"
         android:layout_width="192dp"
         android:layout_height="71dp"
-        android:layout_alignParentEnd="true"
+        android:layout_alignEnd="@+id/duration"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="60dp"
-        android:layout_marginTop="202dp"
+        android:layout_marginTop="203dp"
         android:textSize="18sp" />
 
     <EditText
@@ -101,23 +102,28 @@
 
     <Button
         android:id="@+id/book"
-        android:layout_width="wrap_content"
+        android:textColor="@color/white"
+        android:layout_width="125dp"
+        android:background="@drawable/big_button_bg"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textView2"
+        android:layout_alignEnd="@+id/duration"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="11dp"
         android:text="Book" />
 
     <Button
         android:id="@+id/back"
-        android:layout_width="wrap_content"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/book"
-        android:layout_toEndOf="@+id/textView"
-        android:text="Back" />
+        android:layout_toStartOf="@+id/curTime"
+        android:background="@drawable/big_button_bg"
+        android:text="Back"
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/totalTime"
+        android:textColor="@color/white"
         android:layout_width="357dp"
         android:layout_height="144dp"
         android:layout_alignParentBottom="true"

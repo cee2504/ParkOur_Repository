@@ -25,6 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="8dp"
         android:layout_alignStart="@+id/textView4"
         android:layout_marginTop="76dp"
         android:text="Current time:"
@@ -44,6 +45,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/totalTime"
         android:layout_marginTop="130dp"
@@ -76,9 +78,9 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/curTime"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_marginBottom="240dp"
+        android:layout_marginBottom="241dp"
         android:text="Enter park duration (hour):"
         android:textColor="@color/white"
         android:textSize="18sp" />
@@ -86,10 +88,10 @@
     <Button
         android:id="@+id/btnTime"
         android:layout_width="153dp"
-        android:background="@drawable/big_button_bg"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView2"
+        android:layout_alignStart="@+id/textView4"
         android:layout_alignTop="@+id/viewTime"
+        android:background="@drawable/big_button_bg"
 
         android:text="Pick your time"
         android:textColor="@color/white" />
