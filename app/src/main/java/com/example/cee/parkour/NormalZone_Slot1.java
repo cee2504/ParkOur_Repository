@@ -1,5 +1,6 @@
 package com.example.cee.parkour;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -45,7 +46,7 @@ public class NormalZone_Slot1 extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Car Park Selection");
+        getSupportActionBar().setTitle("NormalZone - Parking Space 1");
         //-------------------------------------
 
         backBtn = (Button) findViewById(R.id.btnBack);
@@ -61,7 +62,9 @@ public class NormalZone_Slot1 extends AppCompatActivity {
         final int curHour = cal.get(Calendar.HOUR_OF_DAY);
         int curMinute = cal.get(Calendar.MINUTE);
 
-        String curTime = curHour + ":" + curMinute;
+        String curMinuteFormatted = String.format("%02d", curMinute);
+        String curHourFormatted = String.format("%02d", curHour);
+        String curTime = curHourFormatted + ":" + curMinuteFormatted;
 
         displayTime = (TextView) findViewById(R.id.curTime);
         displayTime.setText(curTime);
@@ -87,7 +90,7 @@ public class NormalZone_Slot1 extends AppCompatActivity {
                 {
                     @Override
                     public void onClick(View v) {
-                       // if (np.getValue() > curHour) {      //Compare current time with input time
+                       // if (np.getValue() > curHour) {      //Compares current time with input time
                         if ((np.getValue() >=12) && (np.getValue() <14)){
                             viewtimePicker.setText("This time is booked");
                             d.dismiss();
@@ -121,6 +124,7 @@ public class NormalZone_Slot1 extends AppCompatActivity {
 
         bookParking = (Button) findViewById(R.id.book);
         bookParking.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 String hour ="";

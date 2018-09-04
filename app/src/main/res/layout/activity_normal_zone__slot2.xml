@@ -4,27 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TimePicker">
+    tools:context=".TimePicker"
+    android:background="@drawable/gradient_bg_1">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
-        android:text="Slot 2"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        app:layout_anchorGravity="top|center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_marginStart="11dp"
         android:layout_marginTop="84dp"
+        android:textColor="@color/white"
         android:text="Current time:"
         android:textSize="18sp" />
 
@@ -32,8 +33,9 @@
         android:id="@+id/curTime"
         android:layout_width="95dp"
         android:layout_height="30dp"
-        android:layout_alignEnd="@+id/textView"
         android:layout_alignTop="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
     <TextView
@@ -41,22 +43,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_marginTop="125dp"
+        android:layout_alignStart="@+id/totalTime"
+        android:layout_marginTop="130dp"
         android:text="Booked Time:"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textView"
         android:layout_alignTop="@+id/textView4"
+        android:layout_centerHorizontal="true"
         android:text="11:00-13:00"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textView9"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -67,7 +72,9 @@
 
     <Button
         android:id="@+id/btnTime"
-        android:layout_width="106dp"
+        android:textColor="@color/white"
+        android:layout_width="153dp"
+        android:background="@drawable/big_button_bg"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/textView2"
         android:layout_alignTop="@+id/viewTime"
@@ -77,9 +84,10 @@
         android:id="@+id/viewTime"
         android:layout_width="192dp"
         android:layout_height="71dp"
+        android:layout_alignEnd="@+id/totalTime"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/curTime"
-        android:layout_marginTop="202dp"
+        android:layout_marginTop="190dp"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
     <EditText
@@ -87,35 +95,45 @@
         android:layout_width="117dp"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView9"
-        android:layout_toEndOf="@+id/textView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="39dp"
         android:ems="10"
-        android:inputType="number" />
+        android:inputType="number"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/book"
-        android:layout_width="wrap_content"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textView2"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="15dp"
-        android:text="Book" />
+        android:layout_toEndOf="@+id/curTime"
+        android:background="@drawable/big_button_bg"
+        android:text="Book"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/back"
-        android:layout_width="wrap_content"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/book"
-        android:layout_toEndOf="@+id/textView"
-        android:text="Back" />
+        android:layout_marginStart="21dp"
+
+        android:background="@drawable/big_button_bg"
+        android:text="Back"
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/totalTime"
         android:layout_width="357dp"
         android:layout_height="144dp"
+        android:textColor="@color/white"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="84dp"
         android:text="Total Time"
+
         android:textSize="18sp" />
 
 </RelativeLayout>

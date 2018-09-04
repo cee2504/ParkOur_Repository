@@ -7,11 +7,16 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Calendar;
 import java.util.StringTokenizer;
@@ -28,10 +33,21 @@ public class NormalZone_Slot2 extends AppCompatActivity {
     Button timeBtn;
     Button bookParking;
     Button backBtn;
+
+    private FirebaseAuth firebaseAuth;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_normal_zone__slot2);
+
+        //Firebase Code + Toolbar--------------
+        firebaseAuth = FirebaseAuth.getInstance();
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("NormalZone - Parking Space 2");
+        //-------------------------------------
 
         backBtn = (Button) findViewById(R.id.back);
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +62,9 @@ public class NormalZone_Slot2 extends AppCompatActivity {
         final int curHour = cal.get(Calendar.HOUR_OF_DAY);
         int curMinute = cal.get(Calendar.MINUTE);
 
-        String curTime = curHour + ":" + curMinute;
+        String curMinuteFormatted = String.format("%02d", curMinute);
+        String curHourFormatted = String.format("%02d", curHour);
+        String curTime = curHourFormatted + ":" + curMinuteFormatted;
 
         displayTime = (TextView) findViewById(R.id.curTime);
         displayTime.setText(curTime);
@@ -72,7 +90,7 @@ public class NormalZone_Slot2 extends AppCompatActivity {
                 {
                     @Override
                     public void onClick(View v) {
-                        if (np.getValue() > curHour) {      //Compare current time with input time
+//                        if (np.getValue() > curHour) {      //Compares current time with input time
                         if ((np.getValue() >=11) && (np.getValue() <13)){
                             viewtimePicker.setText("This time is booked");
                             d.dismiss();
@@ -86,10 +104,10 @@ public class NormalZone_Slot2 extends AppCompatActivity {
                             viewtimePicker.setText(String.valueOf(np.getValue() + ":00"));
                             d.dismiss();
                         }
-                         }
-                        else if ( np.getValue() < curHour){
-                            viewtimePicker.setText("Time invalid. Time must be equal or greater than current time");
-                        }
+//                         }
+//                        else if ( np.getValue() < curHour){
+//                            viewtimePicker.setText("Time invalid. Time must be equal or greater than current time");
+//                        }
 
                     }
                 });
@@ -153,5 +171,33 @@ public class NormalZone_Slot2 extends AppCompatActivity {
                 //timeTotal.setText(Integer.toString(Integer.parseInt(hour) +  Integer.parseInt(durationHour.getText().toString())));
             }
         });
+    } //end OnCreate Method
+
+
+//------------------------------------------------------------------------------------
+//Firebase Code for toolbar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.logoutMenu:
+                Logout();
+
+        }
+        return super.onOptionsItemSelected(item);
     }
+
+    //inflates the toolbar menu and populates it with all of its options
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_parkour, menu);
+        return true;
+    }
+
+    // Logs the user out
+    private void Logout(){
+        firebaseAuth.signOut();
+        finish();
+        startActivity(new Intent(NormalZone_Slot2.this, LoginPage.class));
+    }
+//------------------------------------------------------------------------------------
 }
