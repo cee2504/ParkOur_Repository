@@ -6,6 +6,34 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/purpp</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:numberPickerStyle">@style/MyNumberPickerTheme</item>
     </style>
 
+
+    <style name="ToolbarIconStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="color">@color/purpp</item>
+    </style>
+
+    <style name="ToolBarStyle.Event" parent="ToolbarIconStyle">
+        <item name="titleTextAppearance">@style/TextAppearance.Widget.Event.Toolbar.Title</item>
+    </style>
+
+    <style name="TextAppearance.Widget.Event.Toolbar.Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <!--Any text styling can be done here-->
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+
+
+    <style name="MyAppThemeThree" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+
+
+    </style>
+    <style name="MyNumberPickerTheme" parent="@android:style/Widget.Material.NumberPicker">
+        <item name="colorControlNormal ">#33691e</item>
+        <item name="android:background">#b3e5fc</item>
+    </style>
 </resources>

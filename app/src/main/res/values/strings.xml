@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ParkOur</string>
+    <string name="logout_text">Logout</string>
 </resources>
