@@ -88,15 +88,21 @@ public class LoginPage extends AppCompatActivity {
     }
 
     private void createAccount() {
-        (mAuth.createUserWithEmailAndPassword(emailAddress.getText().toString(), password.getText().toString())).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(LoginPage.this, "Registration Complete!", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(LoginPage.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+
+        if (TextUtils.isEmpty(emailAddress.getText().toString()) || (TextUtils.isEmpty(password.getText().toString()))) {
+            Toast.makeText(LoginPage.this, "Fields cannot be empty", Toast.LENGTH_SHORT).show();
+        }else {
+            (mAuth.createUserWithEmailAndPassword(emailAddress.getText().toString(), password.getText().toString())).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(LoginPage.this, "Registration Complete!", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(LoginPage.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    }
                 }
-            }
-        });
+            });
+        }
+
     }
 }
