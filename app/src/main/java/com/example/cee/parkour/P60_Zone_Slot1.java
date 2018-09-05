@@ -88,7 +88,7 @@ public class P60_Zone_Slot1 extends AppCompatActivity {
                 {
                     @Override
                     public void onClick(View v) {
-//                        if (np.getValue() > curHour) {      //Compares current time with input time
+                        if (np.getValue() > curHour) {      //Compares current time with input time
                         if ((np.getValue() >=10) && (np.getValue() <13)){
                             viewtimePicker.setText("This time is booked");
                             d.dismiss();
@@ -102,10 +102,11 @@ public class P60_Zone_Slot1 extends AppCompatActivity {
                             viewtimePicker.setText(String.valueOf(np.getValue() + ":00"));
                             d.dismiss();
                         }
-//                         }
-//                        else if ( np.getValue() < curHour){                       //Compares current time with input time
-//                            viewtimePicker.setText("Time invalid. Time must be equal or greater than current time");
-//                        }
+                         }
+                        else if ( np.getValue() < curHour){                       //Compares current time with input time
+                            viewtimePicker.setText("Time invalid. Time must be equal or greater than current time");
+                            d.dismiss();
+                        }
 
                     }
                 });
