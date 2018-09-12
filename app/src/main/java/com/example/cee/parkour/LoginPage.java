@@ -17,9 +17,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginPage extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
-    private EditText emailAddress;
-    private EditText password;
+    public FirebaseAuth mAuth;
+    public EditText emailAddress;
+    public EditText password;
     private Button loginButton;
     private Button registerButton;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -68,7 +68,7 @@ public class LoginPage extends AppCompatActivity {
     }
 
 
-    private void startLogin() {
+    public void startLogin() {
         String email = emailAddress.getText().toString();
         String pass = password.getText().toString();
 
@@ -87,7 +87,7 @@ public class LoginPage extends AppCompatActivity {
         }
     }
 
-    private void createAccount() {
+    public void createAccount() {
 
         if (TextUtils.isEmpty(emailAddress.getText().toString()) || (TextUtils.isEmpty(password.getText().toString()))) {
             Toast.makeText(LoginPage.this, "Fields cannot be empty", Toast.LENGTH_SHORT).show();

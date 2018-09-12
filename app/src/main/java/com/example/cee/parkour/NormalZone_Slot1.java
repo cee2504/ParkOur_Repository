@@ -91,22 +91,8 @@ public class NormalZone_Slot1 extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         if (np.getValue() > curHour) {      //Compares current time with input time
-                        if ((np.getValue() >=12) && (np.getValue() <14)){
-                            viewtimePicker.setText("This time is booked");
+                            checkInput(np.getValue());
                             d.dismiss();
-                        }
-                        else if (np.getValue() == 16){
-                            viewtimePicker.setText("This time is booked");
-                            d.dismiss();
-                        }
-                        else if (np.getValue() >= 17 ){
-                            viewtimePicker.setText("Parking is free from 17:00 to 9:00. No booking required");
-                            d.dismiss();
-                        }
-                        else {
-                            viewtimePicker.setText(String.valueOf(np.getValue() + ":00"));
-                            d.dismiss();
-                        }
                          }
                         else if ( np.getValue() < curHour){
                           viewtimePicker.setText("Time invalid. Time must be equal or greater than current time");
@@ -142,40 +128,7 @@ public class NormalZone_Slot1 extends AppCompatActivity {
                 int setDuration = Integer.parseInt(durationHour.getText().toString());
                 int totalHourBook = setHour + setDuration;
 
-
-                if (( setHour < 12) && (totalHourBook >=12)){
-                    timeTotal.setText("This time is booked");
-                }
-                else if (( setHour == 15 ) && (totalHourBook >=17)){
-                    timeTotal.setText("This time is booked");
-                }
-                else if (totalHourBook > 16){
-                    timeTotal.setText("This time is booked");
-                }
-                else if (totalHourBook > 24 ){
-                    timeTotal.setText("Invalid Time. Enter again");
-                }
-                else if (totalHourBook < 9  ){
-                    timeTotal.setText("Parking is free from 17:00 from 9:00. No booking required");
-                }
-                else if (( setHour < 9) && (totalHourBook >= 9) ){
-                    int price = (setDuration - ( 9 - setHour )) * 20;
-                    timeTotal.setText("Normal Zone - $20/hour \n" +
-                            "Your Booking: \n"+
-                            "From: "+ viewtimePicker.getText().toString() +"\n"+
-                            "To: "+Integer.toString(totalHourBook) + ":00" +"\n"+
-                            "Total Price($): " + Integer.toString(price));
-                }
-                else {
-                    int price = setDuration * 20;
-                    timeTotal.setText("Normal Zone - $20/hour \n" +
-                            "Your Booking: \n"+
-                            "From: "+ viewtimePicker.getText().toString() +"\n"+
-                            "To: "+Integer.toString(totalHourBook) + ": 00"+"\n"+
-                            "Total Price($): " + Integer.toString(price));
-                }
-
-
+                parkingFee(setHour, totalHourBook, setDuration);
 
                 //timeTotal.setText(Integer.toString(Integer.parseInt(hour) +  Integer.parseInt(durationHour.getText().toString())));
             }
@@ -208,4 +161,78 @@ public class NormalZone_Slot1 extends AppCompatActivity {
         startActivity(new Intent(NormalZone_Slot1.this, LoginPage.class));
     }
 //------------------------------------------------------------------------------------
+
+    public void checkInput (int input){
+        if ((input >=12) && (input <14)){
+            viewtimePicker.setText("This time is booked");
+
+        }
+        else if (input == 16){
+            viewtimePicker.setText("This time is booked");
+
+        }
+        else if (input >= 17 ){
+            viewtimePicker.setText("Parking is free from 17:00 from 9:00. No booking required");
+
+        }
+        else {
+            viewtimePicker.setText(String.valueOf(input + ":00"));
+
+        }
+    }
+
+    public void parkingFee( int setTime, int totalHour, int parkDuration){
+        if (( setTime < 12) && (totalHour >=12)){
+            timeTotal.setText("This time is booked");
+        }
+        else if (( setTime == 15 ) && (totalHour >=17)){
+            timeTotal.setText("This time is booked");
+        }
+        else if (totalHour > 16){
+            timeTotal.setText("This time is booked");
+        }
+        else if (totalHour > 24 ){
+            timeTotal.setText("Invalid Time. Enter again");
+        }
+        else if (totalHour < 9  ){
+            timeTotal.setText("Parking is free from 17:00 from 9:00. No booking required");
+        }
+        else if (( setTime < 9) && (totalHour >= 9) ){
+            if (totalHour <= 17){
+                int price = (parkDuration - ( 9 - setTime )) * 20;
+                timeTotal.setText("Normal Zone - $20/hour \n" +
+                        "Your Booking: \n"+
+                        "From: "+ viewtimePicker.getText().toString() +"\n"+
+                        "To: "+Integer.toString(totalHour) + ":00" +"\n"+
+                        "Total Price($): " + Integer.toString(price));
+            }
+            else if ((totalHour >17)){
+                int price = (parkDuration - ( 9 - setTime )) * 20 - 20 * (totalHour - 17);
+                timeTotal.setText("Normal Zone - $20/hour \n" +
+                        "Your Booking: \n"+
+                        "From: "+ viewtimePicker.getText().toString() +"\n"+
+                        "To: "+Integer.toString(totalHour) + ":00" +"\n"+
+                        "Total Price($): " + Integer.toString(price));
+            }
+
+        }
+        else {
+
+            if (totalHour <= 17) {
+                int price = parkDuration * 20;
+                timeTotal.setText("Normal Zone - $20/hour \n" +
+                        "Your Booking: \n" +
+                        "From: " + viewtimePicker.getText().toString() + "\n" +
+                        "To: " + Integer.toString(totalHour) + ":00" + "\n" +
+                        "Total Price($): " + Integer.toString(price));
+            } else if ((totalHour > 17)) {
+                int price = parkDuration * 20 - 20 * (totalHour - 17);
+                timeTotal.setText("Normal Zone - $20/hour \n" +
+                        "Your Booking: \n" +
+                        "From: " + viewtimePicker.getText().toString() + "\n" +
+                        "To: " + Integer.toString(totalHour) + ":00" + "\n" +
+                        "Total Price($): " + Integer.toString(price));
+            }
+        }
+    }
 }
